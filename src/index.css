@@ -10,4 +10,10 @@ html {
 
 body {
   font-family: sans-serif;
+  background-color: #000;
+}
+
+.container--app {
+  color: white;
+  margin: 12rem;
 }
