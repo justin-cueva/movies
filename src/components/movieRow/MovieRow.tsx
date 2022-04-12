@@ -4,18 +4,18 @@ import { connect, ConnectedProps } from "react-redux";
 import "../../MovieRow.css";
 import fetchMovies from "../../actions/fetchMovies";
 
-const MovieRow = ({ fetchMovies, movies }: PropsFromRedux) => {
+const MovieRow = ({ fetchMovies, movies, company }: Props) => {
   useEffect(() => {
-    fetchMovies(8, "disney");
+    fetchMovies(8, company);
     console.log("fetching movies");
   }, []);
 
   return (
     <div className="movie-row">
-      <h2>Disney</h2>
+      <h2>{company}</h2>
       <div className="conatiner--movies">
-        {movies.disney &&
-          movies.disney.map((movie: any) => {
+        {movies[company] &&
+          movies[company].map((movie: any) => {
             return <img key={movie.id} className="movie" src={movie.image} />;
           })}
       </div>
@@ -34,5 +34,9 @@ const mapStateToProps = (state: RootState) => {
 const connector = connect(mapStateToProps, { fetchMovies });
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type Props = PropsFromRedux & {
+  company: string;
+};
 
 export default connector(MovieRow);

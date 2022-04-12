@@ -4,7 +4,8 @@ const App = () => {
   return (
     <div className="container--app">
       <div className="movie-rows">
-        <MovieRow />
+        <MovieRow company="disney" />
+        <MovieRow company="dreamworks" />
       </div>
     </div>
   );

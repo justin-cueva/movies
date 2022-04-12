@@ -17,3 +17,9 @@ body {
   color: white;
   margin: 4rem;
 }
+
+.movie-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+}
