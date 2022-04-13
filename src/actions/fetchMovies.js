@@ -1,4 +1,4 @@
-export default (amount: number, company: string) => async (dispatch: any) => {
+export default (amount, company) => async (dispatch) => {
   const response = await fetch(
     `https://imdb-api.com/API/AdvancedSearch/k_2xj015ok?companies=${company}&count=${amount}`
   );

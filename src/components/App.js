@@ -1,4 +1,5 @@
 import MovieRow from "./movieRow/MovieRow";
+import React from "react";
 
 const App = () => {
   return (

@@ -2,6 +2,13 @@
 background-color: #333; 
 } */
 
+.placeholder {
+  width: 30rem;
+  height: 44rem;
+  height: 50rem;
+  background-color: grey;
+}
+
 .movie-row h2 {
   font-size: 3.2rem;
   margin-bottom: 2.4rem;
@@ -14,4 +21,5 @@ background-color: #333;
 
 .movie {
   width: 30rem;
+  height: 44rem;
 }

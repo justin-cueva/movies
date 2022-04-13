@@ -1,4 +1,5 @@
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+import React from "react";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -8,17 +9,14 @@ import "./index.css";
 import App from "./components/App";
 import reducers from "./reducers";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-
 const store = createStore(
   reducers,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-root.render(
+ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>
+  </Provider>,
+  document.querySelector("#root")
 );
