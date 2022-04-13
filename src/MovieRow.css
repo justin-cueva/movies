@@ -1,10 +1,25 @@
-.movie-row {
-  background-color: #333;
+/* .movie-row {
+background-color: #333; 
+} */
+
+.placeholder {
+  width: 30rem;
+  height: 44rem;
+  height: 50rem;
+  background-color: grey;
 }
 
 .movie-row h2 {
   font-size: 3.2rem;
+  margin-bottom: 2.4rem;
 }
 
-/* .conatiner--movies {
-} */
+.conatiner--movies {
+  display: flex;
+  gap: 2rem;
+}
+
+.movie {
+  width: 30rem;
+  height: 44rem;
+}

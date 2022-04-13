@@ -1,9 +1,7 @@
-type Actions = { type: "GOT_MOVIES"; payload: any };
-
-export default (state = {}, action: Actions) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case "GOT_MOVIES":
-      const newArrayOfMovies = action.payload[1].map((movie: any) => {
+      const newArrayOfMovies = action.payload[1].map((movie) => {
         return { id: movie.id, image: movie.image, title: movie.title };
       });
 
