@@ -8,6 +8,7 @@ background-color: #333;
 }
 
 .conatiner--movies {
+  padding-right: 1rem;
   width: 100%;
   transition: all 500ms ease;
   /* display: flex; */
@@ -19,6 +20,22 @@ background-color: #333;
   /* grid-template-rows: minmax(auto, 50rem); */
   gap: 1rem;
   transition: all 800ms ease;
+}
+
+.container--multi-row {
+  position: relative;
+}
+
+.row-absolute-right--1 {
+  position: absolute;
+  top: 0;
+  left: calc(100%);
+}
+
+.row-absolute-right--2 {
+  position: absolute;
+  top: 0;
+  left: calc(200%);
 }
 
 .movie {

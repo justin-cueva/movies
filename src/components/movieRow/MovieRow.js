@@ -34,17 +34,27 @@ const MovieRow = ({ fetchMovies, movies, company }) => {
         </div>
       )}
       {movies[company] && (
-        <div className={`conatiner--movies transformed--${position}`}>
-          {movies[company].slice(0, 9).map((movie) => {
+        <div className="container--multi-row">
+          {[0, 1, 2].map((index) => {
+            const start = index * 9;
+            const end = (index + 1) * 9;
             return (
-              <div className="movie" key={movie.id}>
-                <LazyLoadImage
-                  key={movie.id}
-                  className="movie-img"
-                  effect="blur"
-                  src={movie.image}
-                  placeholder={<div className="movie-placeholder" />}
-                />
+              <div
+                className={`conatiner--movies row-absolute-right--${index} transformed--${position}`}
+              >
+                {movies[company].slice(start, end).map((movie) => {
+                  return (
+                    <div className="movie" key={movie.id}>
+                      <LazyLoadImage
+                        key={movie.id}
+                        className="movie-img"
+                        effect="blur"
+                        src={movie.image}
+                        placeholder={<div className="movie-placeholder" />}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
