@@ -3,12 +3,12 @@ import { connect, ConnectedProps } from "react-redux";
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons";
 
 import "../../MovieRow.css";
 import fetchMovies from "../../actions/fetchMovies";
 
 const MovieRow = ({ fetchMovies, movies, company }) => {
-  const [transformed, setTransformed] = useState(false);
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
@@ -21,21 +21,31 @@ const MovieRow = ({ fetchMovies, movies, company }) => {
       {movies[company] && (
         <div className="buttons">
           <h2> {company}</h2>
-          <button onClick={() => setPosition((prev) => prev - 1)}>left</button>
-          <button onClick={() => setPosition((prev) => prev + 1)}>right</button>
+          {position === 0 ? null : (
+            <button onClick={() => setPosition((prev) => prev - 1)}>
+              left
+            </button>
+          )}
+          {position === 2 ? null : (
+            <button onClick={() => setPosition((prev) => prev + 1)}>
+              right
+            </button>
+          )}
         </div>
       )}
       {movies[company] && (
         <div className={`conatiner--movies transformed--${position}`}>
           {movies[company].map((movie) => {
             return (
-              <LazyLoadImage
-                key={movie.id}
-                className="movie"
-                effect="blur"
-                src={movie.image}
-                placeholder={<div className="movie-placeholder" />}
-              />
+              <div className="movie" key={movie.id}>
+                <LazyLoadImage
+                  key={movie.id}
+                  className="movie"
+                  effect="blur"
+                  src={movie.image}
+                  placeholder={<div className="movie-placeholder" />}
+                />
+              </div>
             );
           })}
         </div>
