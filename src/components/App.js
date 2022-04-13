@@ -7,6 +7,8 @@ const App = () => {
       <div className="movie-rows">
         <MovieRow company="disney" />
         <MovieRow company="dreamworks" />
+        <MovieRow company="mgm" />
+        <MovieRow company="warner" />
       </div>
     </div>
   );
