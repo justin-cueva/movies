@@ -35,12 +35,12 @@ const MovieRow = ({ fetchMovies, movies, company }) => {
       )}
       {movies[company] && (
         <div className={`conatiner--movies transformed--${position}`}>
-          {movies[company].map((movie) => {
+          {movies[company].slice(0, 9).map((movie) => {
             return (
               <div className="movie" key={movie.id}>
                 <LazyLoadImage
                   key={movie.id}
-                  className="movie"
+                  className="movie-img"
                   effect="blur"
                   src={movie.image}
                   placeholder={<div className="movie-placeholder" />}

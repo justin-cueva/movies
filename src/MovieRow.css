@@ -8,22 +8,37 @@ background-color: #333;
 }
 
 .conatiner--movies {
+  width: 100%;
   transition: all 500ms ease;
-  display: flex;
-  gap: 2rem;
-  transition: all 300ms ease;
+  /* display: flex; */
+  /* justify-content: space-evenly; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  /* grid-template-rows: minmax(auto, 50rem); */
+  gap: 1rem;
+  transition: all 800ms ease;
 }
 
 .movie {
-  width: 22rem;
-  height: 34rem;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
   transition: all 300ms ease;
 }
 
-.movie:hover {
+.movie-img {
+  /* height: 100%; */
+  width: 100%;
+  /* height: 34rem; */
+}
+
+/* .movie:hover {
   transform: scale(1.05);
   transition: all 300ms ease;
-}
+} */
 
 .movie-placeholder {
   transition: all 300ms ease;
