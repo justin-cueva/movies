@@ -6,12 +6,19 @@
 
 html {
   font-size: 62.5%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 body {
   font-family: sans-serif;
   background-color: #111;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .container--app {
