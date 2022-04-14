@@ -8,8 +8,10 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 
 import "../../MovieRow.css";
 import fetchAllMovies from "../../actions/fetchAllMovies";
+import useTitle from "../../hooks/useTitle";
 
 const MovieRow = ({ movies, company, fetchAllMovies }) => {
+  const { title } = useTitle(company);
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
 
@@ -24,16 +26,14 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
   }, [colsPerRow]);
 
   useEffect(() => {
-    // fetchMovies(21, company);
     fetchAllMovies();
-    console.log("fetching movies");
   }, []);
 
   return (
     <div className="movie-row">
       {movies[company] && (
         <div className="buttons">
-          <h2> {company}</h2>
+          <h2>{title}</h2>
         </div>
       )}
       {movies[company] && (
