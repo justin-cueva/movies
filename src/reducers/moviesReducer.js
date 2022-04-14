@@ -6,6 +6,8 @@ export default (state = {}, action) => {
       });
 
       return { ...state, [action.payload[0]]: newArrayOfMovies };
+    case "GOT_ALL_MOVIES":
+      return { ...Object.values(action.payload)[0] };
     default:
       return state;
   }
