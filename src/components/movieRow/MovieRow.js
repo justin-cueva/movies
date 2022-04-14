@@ -3,12 +3,12 @@ import { connect, ConnectedProps } from "react-redux";
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
-import "../../MovieRow.css";
+import "../../styles/MovieRow/MovieRow.css";
 import fetchAllMovies from "../../actions/fetchAllMovies";
 import useTitle from "../../hooks/useTitle";
+import RowButtons from "./RowButtons";
 
 const MovieRow = ({ movies, company, fetchAllMovies }) => {
   const { title } = useTitle(company);
@@ -32,28 +32,17 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
   return (
     <div className="movie-row">
       {movies[company] && (
-        <div className="buttons">
+        <div>
           <h2>{title}</h2>
         </div>
       )}
       {movies[company] && (
         <div className="container--multi-row">
-          {position !== 0 && (
-            <button
-              className="btn--left"
-              onClick={() => setPosition((prev) => prev - 1)}
-            >
-              <BsChevronCompactLeft />
-            </button>
-          )}
-          {position !== mappingArr[mappingArr.length - 1] && (
-            <button
-              className="btn--right"
-              onClick={() => setPosition((prev) => prev + 1)}
-            >
-              <BsChevronCompactRight />
-            </button>
-          )}
+          <RowButtons
+            position={position}
+            setPosition={setPosition}
+            mappingArr={mappingArr}
+          />
 
           {[...mappingArr].map((index, i) => {
             const start = index * colsPerRow;
@@ -75,7 +64,6 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
                         className="movie-img"
                         effect="blur"
                         src={movie.image}
-                        placeholder={<div className="movie-placeholder" />}
                       />
                     </div>
                   );
