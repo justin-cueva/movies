@@ -90,7 +90,7 @@
   position: absolute;
   z-index: 3;
   height: 100%;
-  width: 7rem;
+  width: 10rem;
   font-size: 4rem;
   background-color: rgba(12, 12, 12, 0.8);
   color: #fff;
@@ -101,22 +101,32 @@
 
 .container--multi-row:hover .btn--right {
   font-size: 7rem;
+  padding-left: 0rem;
 }
 
 .container--multi-row:hover .btn--left {
   font-size: 7rem;
+  padding-right: 0rem;
 }
 
 .btn--left {
   top: 0;
   left: 0;
-  /* transform: translateX(calc(-100%)); */
+  transform: translateX(calc(-100%));
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 2rem;
 }
 
 .btn--right {
   top: 0;
   right: 0;
-  /* transform: translateX(calc(100% - 1rem)); */
+  transform: translateX(calc(100% - 1rem));
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 2rem;
 }
 
 .movie:hover {
