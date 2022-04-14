@@ -17,6 +17,7 @@ body {
 .container--app {
   color: white;
   margin: 4rem 5.6rem 0 5.6rem;
+  scroll-margin: none;
 }
 
 .movie-rows {
@@ -44,9 +45,9 @@ body {
   html {
     font-size: 50%;
   }
-  .container--app {
+  /* .container--app {
     margin: 4rem 2.8rem 0 2.8rem;
-  }
+  } */
 }
 
 /* 624 */
@@ -54,7 +55,7 @@ body {
   html {
     font-size: 40%;
   }
-  .container--app {
+  /* .container--app {
     margin: 4rem 1.6rem 0 1.6rem;
-  }
+  } */
 }
