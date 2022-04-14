@@ -7,9 +7,9 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 import "../../MovieRow.css";
-import fetchMovies from "../../actions/fetchMovies";
+import fetchAllMovies from "../../actions/fetchAllMovies";
 
-const MovieRow = ({ fetchMovies, movies, company }) => {
+const MovieRow = ({ movies, company, fetchAllMovies }) => {
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
 
@@ -24,7 +24,8 @@ const MovieRow = ({ fetchMovies, movies, company }) => {
   }, [colsPerRow]);
 
   useEffect(() => {
-    fetchMovies(21, company);
+    // fetchMovies(21, company);
+    fetchAllMovies();
     console.log("fetching movies");
   }, []);
 
@@ -92,4 +93,4 @@ const mapStateToProps = (state) => {
   return { movies: state.movies };
 };
 
-export default connect(mapStateToProps, { fetchMovies })(MovieRow);
+export default connect(mapStateToProps, { fetchAllMovies })(MovieRow);

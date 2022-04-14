@@ -6,7 +6,7 @@
 
 export default (amount, company) => async (dispatch) => {
   const response = await fetch(
-    `https://imdb-api.com/API/AdvancedSearch/k_2xj015ok?companies=${company}&count=${amount}`
+    `https://imdb-api.com/API/AdvancedSearch/k_4t1ajrhh?companies=${company}&count=${amount}`
   );
 
   const { results } = await response.json();
