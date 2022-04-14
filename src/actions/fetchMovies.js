@@ -2,10 +2,11 @@
 // k_2xj015ok
 // k_yg2kd715
 // k_4t1ajrhh
+// k_tcmb2ap0
 
 export default (amount, company) => async (dispatch) => {
   const response = await fetch(
-    `https://imdb-api.com/API/AdvancedSearch/k_4t1ajrhh?companies=${company}&count=${amount}`
+    `https://imdb-api.com/API/AdvancedSearch/k_tcmb2ap0?companies=${company}&count=${amount}`
   );
 
   const { results } = await response.json();
