@@ -13,8 +13,14 @@ const MovieRow = ({ fetchMovies, movies, company }) => {
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
 
+  const [mappingArr, setMappingArr] = useState([]);
+
   useEffect(() => {
-    console.log(colsPerRow);
+    const arr = [];
+    for (let i = 0; i < Math.ceil(21 / colsPerRow); i++) {
+      arr.push(i);
+    }
+    setMappingArr(arr);
   }, [colsPerRow]);
 
   useEffect(() => {
@@ -31,20 +37,24 @@ const MovieRow = ({ fetchMovies, movies, company }) => {
       )}
       {movies[company] && (
         <div className="container--multi-row">
-          <button
-            className="btn--left"
-            onClick={() => setPosition((prev) => prev - 1)}
-          >
-            <BsChevronCompactLeft />
-          </button>
-          <button
-            className="btn--right"
-            onClick={() => setPosition((prev) => prev + 1)}
-          >
-            <BsChevronCompactRight />
-          </button>
+          {position !== 0 && (
+            <button
+              className="btn--left"
+              onClick={() => setPosition((prev) => prev - 1)}
+            >
+              <BsChevronCompactLeft />
+            </button>
+          )}
+          {position !== mappingArr[mappingArr.length - 1] && (
+            <button
+              className="btn--right"
+              onClick={() => setPosition((prev) => prev + 1)}
+            >
+              <BsChevronCompactRight />
+            </button>
+          )}
 
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((index, i) => {
+          {[...mappingArr].map((index, i) => {
             const start = index * colsPerRow;
             const end = (index + 1) * colsPerRow;
             if (colsPerRow === 5) {
