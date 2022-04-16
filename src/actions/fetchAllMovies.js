@@ -5,7 +5,5 @@ export default () => async (dispatch) => {
 
   const data = await response.json();
 
-  console.log(data);
-
   dispatch({ type: "GOT_ALL_MOVIES", payload: data });
 };

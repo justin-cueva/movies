@@ -10,11 +10,10 @@ import fetchAllMovies from "../../actions/fetchAllMovies";
 import useTitle from "../../hooks/useTitle";
 import RowButtons from "./RowButtons";
 
-const MovieRow = ({ movies, company, fetchAllMovies }) => {
+const MovieRow = ({ movies, company, fetchAllMovies, setModalIsOpen }) => {
   const { title } = useTitle(company);
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
-
   const [mappingArr, setMappingArr] = useState([]);
 
   useEffect(() => {
@@ -58,7 +57,14 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
               >
                 {movies[company].slice(start, end).map((movie) => {
                   return (
-                    <div className="movie" key={movie.id}>
+                    <div
+                      className="movie"
+                      key={movie.id}
+                      onClick={() => {
+                        console.log(`clicked movie with id: ${movie.id}`);
+                        setModalIsOpen(true);
+                      }}
+                    >
                       <LazyLoadImage
                         key={movie.id}
                         className="movie-img"
