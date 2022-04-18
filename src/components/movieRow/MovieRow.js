@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
-import { connect, ConnectedProps } from "react-redux";
-import React from "react";
+import { connect } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-import "../../styles/MovieRow/MovieRow.css";
 import fetchAllMovies from "../../actions/fetchAllMovies";
 import useTitle from "../../hooks/useTitle";
 import RowButtons from "./RowButtons";
+import { openModal } from "../../actions/modalActions";
+import "../../styles/MovieRow/MovieRow.css";
 
-const MovieRow = ({ movies, company, fetchAllMovies }) => {
+const MovieRow = ({ movies, company, fetchAllMovies, openModal }) => {
   const { title } = useTitle(company);
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
-
   const [mappingArr, setMappingArr] = useState([]);
 
   useEffect(() => {
@@ -58,7 +57,13 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
               >
                 {movies[company].slice(start, end).map((movie) => {
                   return (
-                    <div className="movie" key={movie.id}>
+                    <div
+                      className="movie"
+                      key={movie.id}
+                      onClick={() => {
+                        openModal(movie.id);
+                      }}
+                    >
                       <LazyLoadImage
                         key={movie.id}
                         className="movie-img"
@@ -81,4 +86,6 @@ const mapStateToProps = (state) => {
   return { movies: state.movies };
 };
 
-export default connect(mapStateToProps, { fetchAllMovies })(MovieRow);
+export default connect(mapStateToProps, { fetchAllMovies, openModal })(
+  MovieRow
+);

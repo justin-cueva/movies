@@ -1,9 +1,12 @@
-import MovieRow from "./movieRow/MovieRow";
-import React from "react";
+import { connect } from "react-redux";
 
-const App = () => {
+import MovieRow from "./movieRow/MovieRow";
+import Modal from "./modal/Modal";
+
+const App = ({ modalIsOpen }) => {
   return (
     <div className="container--app">
+      {modalIsOpen && <Modal />}
       <div className="movie-rows">
         <MovieRow company="disney" />
         <MovieRow company="dreamworks" />
@@ -13,4 +16,8 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { modalIsOpen: state.movieModal.isOpen };
+};
+
+export default connect(mapStateToProps)(App);
