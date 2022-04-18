@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { BsXCircle } from "react-icons/bs";
 import { Oval } from "react-loader-spinner";
 
 import useFetch from "../../hooks/useFetch";
-import { closeModal } from "../../actions/modalActions";
 import "../../styles/Modal/Modal.css";
 import "../../styles/Modal/Overlay.css";
 
-const Modal = ({ movieModal, closeModal }) => {
+const Modal = () => {
+  const navigate = useNavigate();
+  const { movieId } = useParams();
   const { error, isLoading, movieData } = useFetch(
-    `https://imdb-api.com/en/API/Wikipedia/k_yg2kd715/${movieModal.movieId}`
+    `https://imdb-api.com/en/API/Wikipedia/k_yg2kd715/${movieId}`
   );
 
   return ReactDOM.createPortal(
     <React.Fragment>
-      <div className="overlay" onClick={() => closeModal()} />
+      <div className="overlay" onClick={() => navigate("/")} />
       <div className="modal">
         <div className="container--relative">
-          <span className="modal__icon--X" onClick={() => closeModal()}>
+          <span className="modal__icon--X" onClick={() => navigate("/")}>
             <BsXCircle />
           </span>
           {isLoading && (
@@ -53,4 +55,4 @@ const mapStateToProps = (state) => {
   return { movieModal: state.movieModal };
 };
 
-export default connect(mapStateToProps, { closeModal })(Modal);
+export default connect(mapStateToProps)(Modal);

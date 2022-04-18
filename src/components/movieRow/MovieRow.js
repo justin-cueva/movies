@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useMediaQuery from "../../hooks/useMediaQuery";
@@ -7,10 +8,10 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import fetchAllMovies from "../../actions/fetchAllMovies";
 import useTitle from "../../hooks/useTitle";
 import RowButtons from "./RowButtons";
-import { openModal } from "../../actions/modalActions";
 import "../../styles/MovieRow/MovieRow.css";
 
-const MovieRow = ({ movies, company, fetchAllMovies, openModal }) => {
+const MovieRow = ({ movies, company, fetchAllMovies }) => {
+  const navigate = useNavigate();
   const { title } = useTitle(company);
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
@@ -60,9 +61,7 @@ const MovieRow = ({ movies, company, fetchAllMovies, openModal }) => {
                     <div
                       className="movie"
                       key={movie.id}
-                      onClick={() => {
-                        openModal(movie.id);
-                      }}
+                      onClick={() => navigate(movie.id)}
                     >
                       <LazyLoadImage
                         key={movie.id}
@@ -86,6 +85,4 @@ const mapStateToProps = (state) => {
   return { movies: state.movies };
 };
 
-export default connect(mapStateToProps, { fetchAllMovies, openModal })(
-  MovieRow
-);
+export default connect(mapStateToProps, { fetchAllMovies })(MovieRow);
