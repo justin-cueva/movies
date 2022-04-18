@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
+import { BsXCircle } from "react-icons/bs";
 
 import { closeModal } from "../../actions/modalActions";
 import "../../styles/Modal/Modal.css";
@@ -38,15 +39,20 @@ const Modal = ({ movieModal, closeModal }) => {
     <React.Fragment>
       <div className="overlay" onClick={() => closeModal()} />
       <div className="modal">
-        {movieData && (
-          <React.Fragment>
-            <h2 className="heading--modal">
-              {movieData.title}
-              <span className="heading--year">{movieData.year}</span>
-            </h2>
-            <p className="movie-plot">{movieData.plot}</p>
-          </React.Fragment>
-        )}
+        <div className="container--relative">
+          <span className="modal__icon--X" onClick={() => closeModal()}>
+            <BsXCircle />
+          </span>
+          {movieData && (
+            <React.Fragment>
+              <h2 className="heading--modal">
+                <span>{movieData.title}</span>
+                <span className="heading--year">{movieData.year}</span>
+              </h2>
+              <p className="movie-plot">{movieData.plot}</p>
+            </React.Fragment>
+          )}
+        </div>
       </div>
     </React.Fragment>,
     document.querySelector("#modal")

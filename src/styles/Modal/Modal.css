@@ -7,18 +7,44 @@
   padding: 5rem;
   z-index: 20;
   color: #fff;
+  width: 60%;
+  border-radius: 6px;
 }
 
 .heading--modal {
-  font-size: 4rem;
+  font-size: 3.6rem;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-.heading--year {
+/* .heading--year {
   margin-left: 2rem;
-}
+} */
 
 .movie-plot {
   font-size: 2rem;
-  line-height: 1.4;
+  line-height: 1.6;
+}
+
+.modal__icon--X {
+  font-size: 4rem;
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+}
+
+/* 1200px */
+@media (max-width: 75em) {
+  .modal {
+    width: 80%;
+  }
+}
+
+/* 512px */
+@media (max-width: 32em) {
+  .modal {
+    width: 90%;
+  }
 }
