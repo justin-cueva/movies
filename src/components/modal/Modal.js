@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { BsXCircle } from "react-icons/bs";
+import { Oval } from "react-loader-spinner";
 
 import { closeModal } from "../../actions/modalActions";
 import "../../styles/Modal/Modal.css";
@@ -43,7 +44,11 @@ const Modal = ({ movieModal, closeModal }) => {
           <span className="modal__icon--X" onClick={() => closeModal()}>
             <BsXCircle />
           </span>
-          {movieData && (
+          {!movieData ? (
+            <div className="loading-spinner--modal">
+              <Oval height="100" width="100" color="#fff" ariaLabel="loading" />
+            </div>
+          ) : (
             <React.Fragment>
               <h2 className="heading--modal">
                 <span>{movieData.title}</span>

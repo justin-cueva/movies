@@ -35,6 +35,13 @@
   right: 5rem;
 }
 
+.loading-spinner--modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 10rem;
+}
+
 /* 1200px */
 @media (max-width: 75em) {
   .modal {
