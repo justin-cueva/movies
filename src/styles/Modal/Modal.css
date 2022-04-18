@@ -3,7 +3,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: #222;
   padding: 5rem;
   z-index: 20;
+  color: #fff;
+}
+
+.heading--modal {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.heading--year {
+  margin-left: 2rem;
+}
+
+.movie-plot {
+  font-size: 2rem;
+  line-height: 1.4;
 }

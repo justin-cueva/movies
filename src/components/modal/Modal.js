@@ -20,7 +20,7 @@ const Modal = ({ movieModal, closeModal }) => {
         errorMessage: data.errorMessage,
         title: data.title,
         year: data.year,
-        plot: data.plotShort.plainText,
+        plot: data.plotShort.plainText.split("\n")[0],
       };
       console.log(filteredData);
       setMovieData(filteredData);
@@ -38,8 +38,15 @@ const Modal = ({ movieModal, closeModal }) => {
     <React.Fragment>
       <div className="overlay" onClick={() => closeModal()} />
       <div className="modal">
-        <span>{movieModal.movieId}</span>
-        <button onClick={() => closeModal()}>Close</button>
+        {movieData && (
+          <React.Fragment>
+            <h2 className="heading--modal">
+              {movieData.title}
+              <span className="heading--year">{movieData.year}</span>
+            </h2>
+            <p className="movie-plot">{movieData.plot}</p>
+          </React.Fragment>
+        )}
       </div>
     </React.Fragment>,
     document.querySelector("#modal")
