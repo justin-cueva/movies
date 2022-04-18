@@ -1,23 +1,24 @@
-import { connect } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MovieRow from "./movieRow/MovieRow";
 import Modal from "./modal/Modal";
 
-const App = ({ modalIsOpen }) => {
+const App = () => {
   return (
-    <div className="container--app">
-      {modalIsOpen && <Modal />}
-      <div className="movie-rows">
-        <MovieRow company="disney" />
-        <MovieRow company="dreamworks" />
-        <MovieRow company="universal" />
+    <BrowserRouter>
+      <div className="container--app">
+        <div className="movie-rows">
+          <MovieRow company="disney" />
+          <MovieRow company="dreamworks" />
+          <MovieRow company="universal" />
+        </div>
+        <Routes>
+          <Route path={"/"} element={<div></div>} />
+          <Route path={"/:movieId"} element={<Modal />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { modalIsOpen: state.movieModal.isOpen };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
