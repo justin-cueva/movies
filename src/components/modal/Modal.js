@@ -4,37 +4,15 @@ import { connect } from "react-redux";
 import { BsXCircle } from "react-icons/bs";
 import { Oval } from "react-loader-spinner";
 
+import useFetch from "../../hooks/useFetch";
 import { closeModal } from "../../actions/modalActions";
 import "../../styles/Modal/Modal.css";
 import "../../styles/Modal/Overlay.css";
 
 const Modal = ({ movieModal, closeModal }) => {
-  const [movieData, setMovieData] = useState(null);
-
-  const getData = async (id) => {
-    try {
-      const response = await fetch(
-        `https://imdb-api.com/en/API/Wikipedia/k_tcmb2ap0/${id}`
-      );
-      const data = await response.json();
-      console.log(data);
-      const filteredData = {
-        errorMessage: data.errorMessage,
-        title: data.title,
-        year: data.year,
-        plot: data.plotShort.plainText.split("\n")[0],
-      };
-      console.log(filteredData);
-      setMovieData(filteredData);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    console.log("fetching");
-    getData(movieModal.movieId);
-  }, []);
+  const { error, isLoading, movieData } = useFetch(
+    `https://imdb-api.com/en/API/Wikipedia/k_yg2kd715/${movieModal.movieId}`
+  );
 
   return ReactDOM.createPortal(
     <React.Fragment>
@@ -44,11 +22,18 @@ const Modal = ({ movieModal, closeModal }) => {
           <span className="modal__icon--X" onClick={() => closeModal()}>
             <BsXCircle />
           </span>
-          {!movieData ? (
+          {isLoading && (
             <div className="loading-spinner--modal">
               <Oval height="100" width="100" color="#fff" ariaLabel="loading" />
             </div>
-          ) : (
+          )}
+          {error && (
+            <React.Fragment>
+              <label className="error-label">Error</label>
+              <p className="modal-error">{error.message}</p>
+            </React.Fragment>
+          )}
+          {movieData && (
             <React.Fragment>
               <h2 className="heading--modal">
                 <span>{movieData.title}</span>
