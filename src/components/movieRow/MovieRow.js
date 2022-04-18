@@ -10,13 +10,7 @@ import RowButtons from "./RowButtons";
 import { openModal } from "../../actions/modalActions";
 import "../../styles/MovieRow/MovieRow.css";
 
-const MovieRow = ({
-  movies,
-  company,
-  fetchAllMovies,
-  openModal,
-  setModalIsOpen,
-}) => {
+const MovieRow = ({ movies, company, fetchAllMovies, openModal }) => {
   const { title } = useTitle(company);
   const { colsPerRow } = useMediaQuery("(max-width: 1420px)");
   const [position, setPosition] = useState(0);
@@ -67,8 +61,6 @@ const MovieRow = ({
                       className="movie"
                       key={movie.id}
                       onClick={() => {
-                        console.log(`clicked movie with id: ${movie.id}`);
-                        setModalIsOpen(true);
                         openModal(movie.id);
                       }}
                     >

@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { connect } from "react-redux";
 
 import MovieRow from "./movieRow/MovieRow";
 import Modal from "./modal/Modal";
 
-const App = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
+const App = ({ modalIsOpen }) => {
   return (
     <div className="container--app">
-      <Modal isOpen={modalIsOpen} setOpen={setModalIsOpen} />
+      {modalIsOpen && <Modal />}
       <div className="movie-rows">
-        <MovieRow company="disney" setModalIsOpen={setModalIsOpen} />
-        <MovieRow company="dreamworks" setModalIsOpen={setModalIsOpen} />
-        <MovieRow company="universal" setModalIsOpen={setModalIsOpen} />
+        <MovieRow company="disney" />
+        <MovieRow company="dreamworks" />
+        <MovieRow company="universal" />
       </div>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { modalIsOpen: state.movieModal.isOpen };
+};
+
+export default connect(mapStateToProps)(App);
