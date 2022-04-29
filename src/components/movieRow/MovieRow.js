@@ -48,8 +48,6 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
             const start = index * colsPerRow;
             const end = (index + 1) * colsPerRow;
             if (colsPerRow === 5) {
-              console.log(start, end);
-              console.log(movies[company].slice(start, end));
             }
             return (
               <div
@@ -57,6 +55,8 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
                 className={`conatiner--movies grid-cols transformed--${position} row-absolute-right--${index}`}
               >
                 {movies[company].slice(start, end).map((movie) => {
+                  const image = require(`../../../src/moviesAssets/movie_${movie.id}.jpg`);
+
                   return (
                     <div
                       className="movie"
@@ -67,7 +67,7 @@ const MovieRow = ({ movies, company, fetchAllMovies }) => {
                         key={movie.id}
                         className="movie-img"
                         effect="blur"
-                        src={movie.image}
+                        src={image}
                       />
                     </div>
                   );
